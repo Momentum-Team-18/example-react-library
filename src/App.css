@@ -1,0 +1,31 @@
+:root {
+  --header-background: #0b3954;
+}
+
+.error {
+  padding: 20px;
+  background-color: palevioletred;
+  color: white;
+}
+
+.header {
+  height: 120px;
+  width: 100%;
+  display: flex;
+  background-color: var(--header-background);
+  color: #fff;
+  font-size: 48px;
+  padding: 30px;
+}
+
+.container-box {
+  margin: 30px;
+}
+
+.react-loading-skeleton {
+  margin: 10px 25px;
+}
+
+.card-content {
+  cursor: pointer;
+}
