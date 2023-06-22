@@ -43,16 +43,6 @@ export const BookList = ({ token, setSelected }) => {
     )
   }
 
-  if (selectedBook) {
-    return (
-      <BookDetail
-        bookId={selectedBook}
-        handleGoBack={handleGoBack}
-        token={token}
-      />
-    )
-  }
-
   return (
     <div className="book-list container-box">
       {books.map((book) => (
@@ -61,7 +51,6 @@ export const BookList = ({ token, setSelected }) => {
           title={book.title}
           bookId={book.pk}
           featured={book.featured}
-          setSelected={setSelectedBook}
         />
       ))}
     </div>

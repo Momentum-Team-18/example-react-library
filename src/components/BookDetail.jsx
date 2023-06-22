@@ -1,14 +1,16 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 const BASE_URL = 'https://drf-library-api-n3g8.onrender.com'
 
-export const BookDetail = ({ bookId, handleGoBack, token }) => {
+export const BookDetail = ({ handleGoBack, token }) => {
   const [book, setBook] = useState(null)
+  const { id } = useParams()
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/api/books/${bookId}`, {
+      .get(`${BASE_URL}/api/books/${id}`, {
         headers: {
           Authorization: `Token ${token}`,
         },
@@ -16,7 +18,7 @@ export const BookDetail = ({ bookId, handleGoBack, token }) => {
       .then((res) => {
         setBook(res.data)
       })
-  }, [bookId])
+  }, [id, token])
 
   return (
     <>
