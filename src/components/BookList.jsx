@@ -44,7 +44,13 @@ export const BookList = ({ token, setSelected }) => {
   }
 
   if (selectedBook) {
-    return <BookDetail bookId={selectedBook} handleGoBack={handleGoBack} />
+    return (
+      <BookDetail
+        bookId={selectedBook}
+        handleGoBack={handleGoBack}
+        token={token}
+      />
+    )
   }
 
   return (

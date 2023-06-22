@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react'
 
 const BASE_URL = 'https://drf-library-api-n3g8.onrender.com'
 
-export const BookDetail = ({ bookId, handleGoBack }) => {
+export const BookDetail = ({ bookId, handleGoBack, token }) => {
   const [book, setBook] = useState(null)
 
   useEffect(() => {
     axios
       .get(`${BASE_URL}/api/books/${bookId}`, {
         headers: {
-          Authorization: 'Token c9001075fde91fd8aef1ede16ec2400083b3be16',
+          Authorization: `Token ${token}`,
         },
       })
       .then((res) => {
