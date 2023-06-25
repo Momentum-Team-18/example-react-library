@@ -23,7 +23,7 @@ const App = () => {
             }
           />
           <Route
-            path={'/book/:id'} // I don't have code to make this work yet!
+            path={'/books/:id'}
             element={
               token ? (
                 <BookDetail token={token} />

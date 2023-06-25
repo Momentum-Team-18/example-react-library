@@ -6,20 +6,16 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import { BookDetail } from './BookDetail'
 
 const BASE_URL = 'https://drf-library-api-n3g8.onrender.com'
+const DEV_URL = 'http://127.0.0.1:8000/'
 
 export const BookList = ({ token, setSelected }) => {
   const [books, setBooks] = useState([])
   const [bookTitles, setBookTitles] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [selectedBook, setSelectedBook] = useState(null)
-
-  const handleGoBack = () => {
-    setSelectedBook(null)
-  }
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/api/books`, {
+      .get(`${DEV_URL}/api/books`, {
         headers: {
           Authorization: `Token ${token}`,
         },
