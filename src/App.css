@@ -8,18 +8,35 @@
   color: white;
 }
 
-.header {
+.header-container {
   height: 120px;
   width: 100%;
   display: flex;
+  justify-content: space-between;
   background-color: var(--header-background);
   color: #fff;
-  font-size: 48px;
   padding: 30px;
 }
 
-.container-box {
+.header h1 {
+  font-size: 48px;
+}
+
+.nav {
   margin: 30px;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 }
 
 .react-loading-skeleton {
