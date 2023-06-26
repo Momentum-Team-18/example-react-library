@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
 import axios from 'axios'
 import './App.css'
 import { BookList } from './components/BookList'
@@ -6,9 +6,11 @@ import Login from './components/Login'
 import { useState } from 'react'
 import { BookDetail } from './components/BookDetail'
 import Home from './components/Home'
+import useLocalStorageState from 'use-local-storage-state'
 
 const App = () => {
-  const [token, setToken] = useState('')
+  // const [token, setToken] = useState('')
+  const [token, setToken] = useLocalStorageState('reactLibraryToken', '')
 
   const logout = (e) => {
     e.preventDefault()
@@ -60,7 +62,11 @@ const App = () => {
           <Route
             path={'/books'}
             element={
-              token ? <BookList token={token} /> : <Login setToken={setToken} />
+              token ? (
+                <BookList token={token} />
+              ) : (
+                <Navigate to="/login" replace={true} />
+              )
             }
           />
           <Route
