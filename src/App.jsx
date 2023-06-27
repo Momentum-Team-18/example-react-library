@@ -65,7 +65,7 @@ const App = () => {
               token ? (
                 <BookDetail token={token} />
               ) : (
-                <Login setToken={setToken} />
+                <Navigate to="/login" replace={true} />
               )
             }
           />
