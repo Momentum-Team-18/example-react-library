@@ -4,9 +4,7 @@ import { BookCard } from './BookCard'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { BookDetail } from './BookDetail'
-
-const BASE_URL = 'https://drf-library-api-n3g8.onrender.com'
-const DEV_URL = 'http://127.0.0.1:8000/'
+import { getBooks } from '../requests'
 
 export const BookList = ({ token, setSelected }) => {
   const [books, setBooks] = useState([])
@@ -14,18 +12,12 @@ export const BookList = ({ token, setSelected }) => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    axios
-      .get(`${DEV_URL}/api/books`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      })
-      .then((res) => {
-        const bookTitles = res.data.map((obj) => obj.title)
-        setBookTitles(bookTitles)
-        setBooks(res.data)
-        setIsLoading(false)
-      })
+    getBooks(token).then((res) => {
+      const bookTitles = res.data.map((obj) => obj.title)
+      setBookTitles(bookTitles)
+      setBooks(res.data)
+      setIsLoading(false)
+    })
   }, [token])
 
   if (isLoading) {

@@ -76,11 +76,3 @@ const App = () => {
 }
 
 export default App
-
-// /login
-// /books
-// /books/:id
-// This is the root route "/"
-{
-  /* <BookDetail /> */
-}

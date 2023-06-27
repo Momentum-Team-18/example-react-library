@@ -6,7 +6,7 @@ export const BookCard = ({ title, bookId, featured, setSelected }) => {
       <div className="card-content">
         <div className="content">
           <p>
-            <Link to={`book/${bookId}`}>{title}</Link>
+            <Link to={`${bookId}`}>{title}</Link>
             {featured && (
               <span className="icon">
                 <i className="fa-solid fa-feather-pointed"></i>

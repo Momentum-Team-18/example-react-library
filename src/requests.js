@@ -1,6 +1,6 @@
 import axios from 'axios'
 const BASE_URL = import.meta.env.VITE_USE_DEV_SERVER
-  ? 'http://127.0.0.1:8000/'
+  ? 'http://127.0.0.1:8000'
   : 'https://drf-library-api-n3g8.onrender.com'
 
 export const logIn = (username, password) => {
@@ -19,7 +19,7 @@ export const logOut = (token) => {
 }
 
 export const getBooks = (token) => {
-  return axios.get(`${BASE_URL}/api/books/`, {
+  return axios.get(`${BASE_URL}/api/books`, {
     headers: {
       Authorization: `Token ${token}`,
     },
@@ -27,7 +27,7 @@ export const getBooks = (token) => {
 }
 
 export const getBook = (token, id) => {
-  return axios.get(`${BASE_URL}/api/books/${id}/`, {
+  return axios.get(`${BASE_URL}/api/books/${id}`, {
     headers: {
       Authorization: `Token ${token}`,
     },

@@ -1,24 +1,16 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-
-const BASE_URL = 'https://drf-library-api-n3g8.onrender.com'
-const DEV_URL = 'http://127.0.0.1:8000/'
+import { getBook } from '../requests'
 
 export const BookDetail = ({ token }) => {
   const [book, setBook] = useState(null)
   const { id } = useParams()
 
   useEffect(() => {
-    axios
-      .get(`${DEV_URL}/api/books/${id}`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      })
-      .then((res) => {
-        setBook(res.data)
-      })
+    getBook(token, id).then((res) => {
+      setBook(res.data)
+    })
   }, [id, token])
 
   return (
