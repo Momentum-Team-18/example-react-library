@@ -10,6 +10,7 @@ import useLocalStorageState from 'use-local-storage-state'
 import { logOut } from './requests'
 import RequireAuth from './components/RequireAuth'
 import { NoMatch } from './components/NoMatch'
+import Navigation from './components/Navigation'
 
 const App = () => {
   const [token, setToken] = useLocalStorageState('reactLibraryToken', '')
@@ -26,24 +27,7 @@ const App = () => {
       <BrowserRouter>
         <header className="header-container">
           <h1 className="is-size-1">React Library</h1>
-          <nav className="nav">
-            <ul className="nav-links">
-              <li>
-                <Link to={'/books'}>Books</Link>
-              </li>
-              <li>
-                {token ? (
-                  <button onClick={handleLogout} className="button is-light">
-                    Log Out
-                  </button>
-                ) : (
-                  <Link to="/login" className="button is-light">
-                    Log In
-                  </Link>
-                )}
-              </li>
-            </ul>
-          </nav>
+          <Navigation token={token} handleLogout={handleLogout} />
         </header>
         <Routes>
           <Route path={'/login'} element={<Login setToken={setToken} />} />
