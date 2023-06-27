@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { logIn } from '../requests'
 
 const Login = ({ setToken }) => {
   const [username, setUsername] = useState('')
@@ -15,17 +16,10 @@ const Login = ({ setToken }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const DEV_URL = 'http://127.0.0.1:8000/'
-    const BASE_URL = 'https://drf-library-api-n3g8.onrender.com'
-    axios
-      .post(`${DEV_URL}/auth/token/login/`, {
-        username: username,
-        password: password,
-      })
-      .then((res) => {
-        setToken(res.data.auth_token)
-        navigate('/')
-      })
+    logIn(username, password).then((res) => {
+      setToken(res.data.auth_token)
+      navigate('/')
+    })
   }
 
   return (
