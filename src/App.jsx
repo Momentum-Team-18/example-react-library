@@ -11,6 +11,7 @@ import { logOut } from './requests'
 import RequireAuth from './components/RequireAuth'
 import { NoMatch } from './components/NoMatch'
 import Navigation from './components/Navigation'
+import { BookForm } from './components/BookForm'
 
 const App = () => {
   const [token, setToken] = useLocalStorageState('reactLibraryToken', '')
@@ -35,6 +36,7 @@ const App = () => {
           <Route element={<RequireAuth token={token} />}>
             <Route path={'/books'} element={<BookList token={token} />} />
             <Route path={'/books/:id'} element={<BookDetail token={token} />} />
+            <Route path={'books/new'} element={<BookForm token={token} />} />
           </Route>
           <Route path={'*'} element={<NoMatch />} />
         </Routes>

@@ -33,3 +33,19 @@ export const getBook = (token, id) => {
     },
   })
 }
+
+export const createBook = (token, title, author, pubDate) => {
+  return axios.post(
+    `${BASE_URL}/api/books`,
+    {
+      title,
+      author,
+      publication_year: pubDate,
+    },
+    {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    }
+  )
+}
