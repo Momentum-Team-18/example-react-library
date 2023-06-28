@@ -7,12 +7,20 @@ export const BookForm = ({ token }) => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [pubDate, setPubDate] = useState('')
+  const [titlePageImage, setTitlePageImage] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState(false)
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    createBook(token, title, author, pubDate)
+    const formData = new FormData()
+    if (titlePageImage) {
+      formData.append('title_page', titlePageImage, titlePageImage.name)
+    }
+    formData.append('title', title)
+    formData.append('author', author)
+    formData.append('publication_year', pubDate)
+    createBook(token, formData)
       .then((res) => {
         setSubmitted(true)
         setTitle('')
@@ -20,6 +28,10 @@ export const BookForm = ({ token }) => {
         setPubDate('')
       })
       .catch((err) => setError(err.response.data.error))
+  }
+
+  const handleImageUpload = (event) => {
+    setTitlePageImage(event.target.files[0])
   }
 
   if (submitted) {
@@ -75,6 +87,21 @@ export const BookForm = ({ token }) => {
               value={pubDate}
               required
               onChange={(e) => setPubDate(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="form-controls field">
+          <label htmlFor="title-page-field" className="label">
+            title page image
+          </label>
+          <div className="control">
+            <input
+              className="input"
+              placeholder="Publication date"
+              type="file"
+              accept="image/jpeg,image/png,image/gif"
+              required
+              onChange={handleImageUpload}
             />
           </div>
         </div>
